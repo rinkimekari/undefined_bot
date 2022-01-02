@@ -1317,6 +1317,7 @@ name = "undefined_bot"
 version = "0.1.0"
 dependencies = [
  "dotenv",
+ "rand 0.8.4",
  "reqwest",
  "serde",
  "serde_json",
