@@ -1,4 +1,5 @@
 use serde::Deserialize;
+use serenity::builder::CreateEmbed;
 use serenity::client::Context;
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::channel::Message;
@@ -37,19 +38,21 @@ struct JokeData {
 pub async fn joke(ctx: &Context, msg: &Message) -> CommandResult {
     let joke_data = reqwest::get(JOKE_URL).await?.json::<JokeData>().await?;
 
+    let mut reply = CreateEmbed::default();
+    reply.color((0, 0, 0));
+
     if joke_data.joke_type.as_str() == "single" {
-        msg.reply(ctx, joke_data.joke.unwrap()).await?;
+        reply.field("Joke", joke_data.joke.unwrap(), false);
     } else {
-        msg.reply(
-            ctx,
-            format!(
-                "{}\n{}",
-                joke_data.setup.unwrap(),
-                joke_data.delivery.unwrap()
-            ),
-        )
-        .await?;
+        reply.field("Setup", joke_data.setup.unwrap(), false).field(
+            "Delivery",
+            joke_data.delivery.unwrap(),
+            false,
+        );
     }
 
+    msg.channel_id
+        .send_message(&ctx.http, |m| m.set_embed(reply.clone()))
+        .await?;
     Ok(())
 }
