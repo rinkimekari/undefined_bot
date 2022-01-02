@@ -82,14 +82,28 @@ current high profiles largely on the back of Linux. You have changed the \
 world. Now, go forth and don't be a nag.\
 ```";
 
-    msg.reply(ctx, l1).await?;
-    msg.reply(ctx, l2).await?;
-    msg.reply(ctx, l3).await?;
-    msg.reply(ctx, l4).await?;
+    let channel = msg.channel_id;
+
+    let typing = channel.start_typing(&ctx.http)?;
+
+    std::thread::sleep(std::time::Duration::from_secs(10));
+
+    channel.send_message(&ctx.http, |m| m.content(l1)).await?;
+    std::thread::sleep(std::time::Duration::from_secs(3));
+
+    channel.send_message(&ctx.http, |m| m.content(l2)).await?;
+    std::thread::sleep(std::time::Duration::from_secs(3));
+
+    channel.send_message(&ctx.http, |m| m.content(l3)).await?;
+    std::thread::sleep(std::time::Duration::from_secs(3));
+
+    channel.send_message(&ctx.http, |m| m.content(l4)).await?;
 
     std::thread::sleep(std::time::Duration::from_secs(3));
 
     msg.reply(ctx, "Holy fuck that was long").await?;
+
+    typing.stop();
 
     Ok(())
 }
