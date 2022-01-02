@@ -1,4 +1,4 @@
-FROM rust:alpine
+FROM arm32v7/rust:slim
 
 RUN mkdir -p /usr/src/app
 COPY . /usr/src/app
