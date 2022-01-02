@@ -20,7 +20,7 @@ async fn main() {
     let prefix = env::var("BOT_PREFIX").expect("Failed to get discord bot prefix");
 
     let framework = StandardFramework::new()
-        .configure(|c| c.prefix(prefix)
+        .configure(|c| c.prefix(&prefix))
         .group(&GENERAL_GROUP);
 
     let mut client = Client::builder(token)
