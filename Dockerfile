@@ -1,4 +1,8 @@
-FROM arm32v7/rust:slim
+FROM rust:slim
+
+RUN apt-get update -y && \
+    apt-get install -y libssl-dev pkg-config &&\
+    apt-get clean
 
 RUN mkdir -p /usr/src/app
 COPY . /usr/src/app
