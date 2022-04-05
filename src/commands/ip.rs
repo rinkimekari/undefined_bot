@@ -25,7 +25,6 @@ pub async fn ip(ctx: &Context, msg: &Message) -> CommandResult {
 
     let info = ip_info(&client, ip);
 
-    println!("{info}");
     msg.reply(ctx, info).await?;
 
     Ok(())
