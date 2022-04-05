@@ -1,11 +1,9 @@
-use std::net::IpAddr;
+use std::net::Ipv4Addr;
 use std::str::FromStr;
 use serenity::client::Context;
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::channel::Message;
 use vt3::VtClient;
-
-// TODO: warn about using IPv6 (doesnt work)
 
 #[command]
 pub async fn ip(ctx: &Context, msg: &Message) -> CommandResult {
@@ -18,8 +16,8 @@ pub async fn ip(ctx: &Context, msg: &Message) -> CommandResult {
     let args: Vec<&str> = msg.content.split(' ').collect();
 
     let ip = *args.get(1).unwrap_or(&"");
-    if let Err(_) = IpAddr::from_str(ip) {
-        msg.reply(ctx, "No IP address provided").await?;
+    if let Err(_) = Ipv4Addr::from_str(ip) {
+        msg.reply(ctx, "Please provide an IPv4 address so I can actually do something.").await?;
         return Ok(());
     }
 
