@@ -5,7 +5,7 @@ use serenity::model::channel::Message;
 #[command]
 pub async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
     let now = std::time::SystemTime::now();
-    let message = msg.reply(ctx, "Pong!").await?;
+    let mut message = msg.reply(ctx, "Pong!").await?;
     let message_time = now.elapsed().unwrap();
 
     let message_time = now.elapsed().unwrap().as_millis();
