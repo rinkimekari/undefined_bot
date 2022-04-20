@@ -44,7 +44,7 @@ fn url_info(client: &VtClient, u: &str) -> String {
                     elements.sort_by(|a, b| b.0.cmp(&a.0));
 
                     if elements[0].0 == 0 {
-                        "No data found for {u}".to_owned()
+                        "No data found for {u}".to_string()
                     } else if elements[1].0 == 0 {
                         format!("Most likely {} ({} hits). {link}",
                                 elements[0].1,
@@ -57,14 +57,14 @@ fn url_info(client: &VtClient, u: &str) -> String {
                                 elements[1].0)
                     }
                 } else {
-                    "Analysis stats not found.".to_owned()
+                    "Analysis stats not found.".to_string()
                 }
             } else {
-                "Data not found.".to_owned()
+                "Data not found.".to_string()
             }
         } else {
-            "Attributes not found.".to_owned()
+            "Attributes not found.".to_string()
         }
-        Err(e) => format!("Error: ```{}```", e.to_string()),
+        Err(e) => e.to_string(),
     }
 }
