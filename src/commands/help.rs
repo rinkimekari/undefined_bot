@@ -19,6 +19,7 @@ pub async fn help(ctx: &Context, msg: &Message) -> CommandResult {
 {prefix}url        --> Be less of a pro hecker and scan a URL
 {prefix}virustotal --> *Insert Ghost-Busters theme song, but for VirusTotal* !!! NOT MADE YET !!!
 {prefix}github     --> If you want to act like a half decent programmer, here ya go
+{prefix}cunt       --> Cunt
 ```"
     );
 
