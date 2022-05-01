@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Clippy Check
-      run: cargo clippy
+      run: cargo clippy -- -D warnings
         
   build:
     if: ${{ github.event.label.name == 'check' }}
