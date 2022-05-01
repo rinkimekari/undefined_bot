@@ -5,7 +5,8 @@ use serenity::model::channel::Message;
 #[command]
 pub async fn help(ctx: &Context, msg: &Message) -> CommandResult {
     let prefix = std::env::var("BOT_PREFIX").unwrap();
-    let help_menu = format!("```
+    let help_menu = format!(
+        "```
 {prefix}help       --> Be rude to everyone except @rinkimekari#2514
 {prefix}ping       --> Because we're lazy, here's the default ping-pong command
 {prefix}cat        --> Show a cat picture
@@ -17,7 +18,9 @@ pub async fn help(ctx: &Context, msg: &Message) -> CommandResult {
 {prefix}ip         --> Scan that sus IP like a pro hecker
 {prefix}url        --> Be less of a pro hecker and scan a URL
 {prefix}virustotal --> *Insert Ghost-Busters theme song, but for VirusTotal* !!! NOT MADE YET !!!
-```");
+{prefix}github     --> If you want to act like a half decent programmer, here ya go
+```"
+    );
 
     if *msg.author.id.as_u64() == 351141588455522315 {
         msg.reply(ctx, help_menu).await?;
