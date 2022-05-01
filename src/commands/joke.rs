@@ -4,7 +4,7 @@ use serenity::client::Context;
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::channel::Message;
 
-const JOKE_URL: &'static str = "https://v2.jokeapi.dev/joke/Any";
+const JOKE_URL: &str = "https://v2.jokeapi.dev/joke/Any";
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]

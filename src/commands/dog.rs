@@ -4,7 +4,7 @@ use serenity::client::Context;
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::channel::Message;
 
-const DOG_API: &'static str = "https://dog.ceo/api/breeds/image/random";
+const DOG_API: &str = "https://dog.ceo/api/breeds/image/random";
 
 #[allow(dead_code)]
 #[derive(Deserialize)]

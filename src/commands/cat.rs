@@ -5,7 +5,7 @@ use serenity::client::Context;
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::channel::Message;
 
-const CAT_API: [&'static str; 2] = [
+const CAT_API: [&str; 2] = [
     "https://api.thecatapi.com/api/images/get?format=json&type=gif",
     "https://api.thecatapi.com/api/images/get?format=json",
 ];
