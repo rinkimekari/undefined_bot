@@ -17,7 +17,7 @@ jobs:
     - name: Formatting Check
       run: |
         rustfmt --version
-        cargo fmt -- --write-mode=diff
+        cargo fmt
       
   clippy:
     runs-on: ubuntu-latest
