@@ -5,6 +5,7 @@ use serenity::framework::standard::StandardFramework;
 use std::env;
 
 mod commands;
+mod null;
 use commands::GENERAL_GROUP;
 
 struct Handler;
@@ -21,6 +22,7 @@ async fn main() {
 
     let framework = StandardFramework::new()
         .configure(|c| c.prefix(&prefix))
+        .normal_message(null::null_message)
         .group(&GENERAL_GROUP);
 
     let mut client = Client::builder(token)
