@@ -3,13 +3,15 @@ name: Rust
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
+  pull_request:
+    types: [ labeled ]
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
   fmt:
+    if: ${{ github.event.label.name == 'check' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -19,13 +21,15 @@ jobs:
         cargo fmt
       
   clippy:
+    if: ${{ github.event.label.name == 'check' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Clippy Check
-      run: cargo clippy
+      run: cargo clippy -- -D warnings
         
   build:
+    if: ${{ github.event.label.name == 'check' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
